@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NavWrap = styled.div`
-
+    background-color:#5383e8;
 `;
 
 export const IndexWrap = styled.div`
@@ -14,8 +14,8 @@ export const IndexWrap = styled.div`
 export const Header = styled.header`
     display:flex;
     height:60px;
-    background-color:#232f46;
     align-items:center;
+    background-color:#232f46;
 `;
 
 export const HeaderH1 = styled.h1`

@@ -7,7 +7,7 @@ import Nav from '../Nav/Nav';
 const Index = () => {
     return (
         <IndexWrap>
-            <Nav/>
+            
         </IndexWrap>
     );
 }
