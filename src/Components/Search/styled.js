@@ -7,13 +7,29 @@ export const Global = createGlobalStyle`
 `;
 
 export const SearchWrap = styled.div`
-    
+
 `;
 
 export const Header = styled.header`
     width:1000px;
     margin:0 auto;
     padding:20px;
+`;
+
+export const Body = styled.div`
+    width:1000px;
+    margin:0 auto;
+    padding:20px;
+    display:flex;
+`;
+
+export const BodyMainWrap = styled.div`
+    flex:1;
+`;
+
+export const BodySideWrap = styled.div`
+    width:300px;
+    font-size:12px;
 `;
 
 export const PrevRankWrap = styled.div`
@@ -44,9 +60,21 @@ export const ProfileImgWrap = styled.div`
 
 export const ProfileDataWrap = styled.div`
     margin:0 20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
     & > span {
         color: #242929;
         font-size: 20px;
         font-weight: bold;
     }
+`;
+
+export const NowPlayGameBtn = styled.button`
+    border: 1px solid #288b8b;
+    background: #36a4a4;
+    color: #f2f2f2;
+    padding:10px;
+    border-radius: 2px;
+    font-size: 14px;
 `;

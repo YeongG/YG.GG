@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PrevRankItem from './PrevRankItem';
+import TierBox from './TierBox';
 import {
     Header,
     SearchWrap,
@@ -7,25 +8,39 @@ import {
     PrevRankWrap,
     ProfileWrap,
     ProfileImgWrap,
-    ProfileDataWrap
+    ProfileDataWrap,
+    NowPlayGameBtn,
+    BodySideWrap,
+    Body,
+    BodyMainWrap
 } from './styled';
 
-const Search = ({match}) => {
-    const seasonTierData = [
-        {
-            season:"S7",
-            rank:"Siliver",
-        },
-        {
-            season:"S8",
-            rank:"Gold",
-        },
-        {
-            season:"S9",
-            rank:"Platinum",
-        }
-    ];
+const seasonTierData = [
+    {
+        season:"S7",
+        rank:"Siliver",
+    },
+    {
+        season:"S8",
+        rank:"Gold",
+    },
+    {
+        season:"S9",
+        rank:"Platinum",
+    }
+];
 
+const tierData = [
+    {
+        type:"솔로랭크",
+        rank:"GOLD",
+        tier:1,
+        win:20,
+        lose:24
+    }
+]
+
+const Search = ({match}) => {
     useEffect(() => {
         const { userName } = match.params;
     },[]);
@@ -45,10 +60,17 @@ const Search = ({match}) => {
                     <ProfileWrap>
                         <ProfileImgWrap></ProfileImgWrap>
                         <ProfileDataWrap>
-                            <span>회색빛돌고래</span>   
-                        </ProfileDataWrap>
+                            <span>회색빛돌고래</span>
+                            <NowPlayGameBtn>인게임 정보</NowPlayGameBtn>
+                        </ProfileDataWrap>          
                     </ProfileWrap>
                 </Header>
+                <Body>
+                    <BodySideWrap>
+                        {tierData.map(data => <TierBox data={data} />)}
+                    </BodySideWrap>
+                    <BodyMainWrap>dsa</BodyMainWrap>
+                </Body>
             </SearchWrap>
         </>
     );
