@@ -1,13 +1,13 @@
 import React from 'react';
 import NavGameItem from './NavGameItem';
-import styled from './styled';
+import styled, { MenuWrap } from './styled';
 import {
     Header,
     HeaderH1,
     NavGameListWrap,
     NavWrap,
     Menu,
-    MenuItem
+    MenuItem,
 } from './styled';
 
 const gameItemArray = [
@@ -54,20 +54,23 @@ const Nav = () => {
                         }) => <NavGameItem 
                             src={src}
                             gameTitle={gameTitle}
+                            key={gameTitle}
                         />)
                     }
                 </NavGameListWrap>
             </Header>
-            <Menu>
-                <MenuItem>#집에있자</MenuItem>
-                <MenuItem>챔피언 분석</MenuItem>
-                <MenuItem>우르프</MenuItem>
-                <MenuItem>랭킹</MenuItem>
-                <MenuItem>통계</MenuItem>
-                <MenuItem>프로관전</MenuItem>
-                <MenuItem>멀티서치</MenuItem>
-                <MenuItem>커뮤니티</MenuItem>
-            </Menu>
+            <MenuWrap>
+                <Menu>
+                    <MenuItem>#집에있자</MenuItem>
+                    <MenuItem>챔피언 분석</MenuItem>
+                    <MenuItem>우르프</MenuItem>
+                    <MenuItem>랭킹</MenuItem>
+                    <MenuItem>통계</MenuItem>
+                    <MenuItem>프로관전</MenuItem>
+                    <MenuItem>멀티서치</MenuItem>
+                    <MenuItem>커뮤니티</MenuItem>
+                </Menu>
+            </MenuWrap>
         </NavWrap>
     );
 }

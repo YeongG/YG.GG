@@ -4,18 +4,12 @@ export const NavWrap = styled.div`
     background-color:#5383e8;
 `;
 
-export const IndexWrap = styled.div`
-    background-color:#5383e8;  
-    min-width: 1080px;
-    min-height: 100%;
-    height:100vh;
-`;
-
 export const Header = styled.header`
     display:flex;
     height:60px;
     align-items:center;
     background-color:#232f46;
+    min-width:1200px;
 `;
 
 export const HeaderH1 = styled.h1`
@@ -48,25 +42,31 @@ export const NavGameImg = styled.img`
 `;
 
 export const Menu = styled.div`
-    background: #5383e8;
-    height: 48px;
-    border-bottom: 1px solid #4171d6;
     box-sizing: border-box;
     display:flex;
     justify-content:center;
     width:1300px;
+    height:100%;
 `;
 
 export const MenuItem = styled.div`
     border:3px solid transparent;
-    padding:13px 12px;
+    padding:11px 12px;
+    height:100%;
     font-size: 15px;
     color:#b3cdff;
-    transition:0.1s;
+    transition:0.2s;
     cursor:pointer;
+    box-sizing:border-box;
     &:hover {
         color:white;
         font-weight:bolder;
         border-bottom:3px solid white;
     }
+`;
+
+export const MenuWrap = styled.div`
+    background: #5383e8;
+    height: 48px;
+    border-bottom: 1px solid #4171d6;
 `;

@@ -1,14 +1,77 @@
-import React from 'react';
+import React, { 
+    useState, 
+    useCallback, 
+    useEffect 
+} from 'react';
+import logo from './logo.png';
+import SearchFocusItem from './SearchFocusItem';
 import {
-    IndexWrap,
+    Global,
+    IndexWrap, 
+    LogoWrap,
+    SearchForm,
+    SearchInput,
+    SubmitButton,
+    SearchFocusWrap,
+    SearchFocusIntroduce,
+    SearchFocusItemWrap
 } from './styled';
-import Nav from '../Nav/Nav';
 
-const Index = () => {
+const Index = ({history}) => {
+    const [isFocus, setIsFocus] = useState(false);
+    const [lastlySearchName,setLastlySearchName] = useState([]);
+    const [playerName,setPlayerName] = useState("");
+
+    const changeFocus = useCallback(e => {
+        setIsFocus(prev => !prev);
+    },[]);
+
+    const changePlayerName = useCallback(e => {
+        setPlayerName(e.target.value);
+    },[]);
+
+    useEffect(() => {
+        const lastlySearchName = window.localStorage.getItem("lastlySearchName") || "[]";
+        const jsonLastlySearchName = JSON.parse(lastlySearchName);
+
+        setLastlySearchName(jsonLastlySearchName);
+    },[]);
+
+    const onSubmit = useCallback(e => {
+        e.preventDefault();
+        
+        setLastlySearchName(prev => prev.concat(playerName));
+        
+        const jsonLastlySearchName = JSON.stringify(lastlySearchName);
+        window.localStorage.setItem("lastlySearchName",jsonLastlySearchName);
+
+        history.push(`/search/${playerName}`);
+        setPlayerName("");
+    },[playerName]);
+
     return (
-        <IndexWrap>
-            
-        </IndexWrap>
+        <>
+            <Global/>
+            <IndexWrap>
+                <LogoWrap>
+                    <img src={logo} />
+                </LogoWrap>
+                <SearchForm onSubmit={onSubmit} onFocus={changeFocus} onBlur={changeFocus}>
+                    <SearchInput onChange={changePlayerName} value={playerName} placeholder="소환사명" />
+                    <SubmitButton>.GG</SubmitButton>
+                    {isFocus && (
+                    <SearchFocusWrap>
+                        <SearchFocusIntroduce>최근검색</SearchFocusIntroduce>
+                        <SearchFocusItemWrap>
+                            {lastlySearchName.map(playerName => (
+                                <SearchFocusItem key={playerName}>{playerName}</SearchFocusItem>
+                            ))}
+                        </SearchFocusItemWrap>
+                    </SearchFocusWrap>
+                    )}
+                </SearchForm>
+            </IndexWrap>
+        </>
     );
 }
 

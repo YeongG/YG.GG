@@ -19,11 +19,12 @@ const Global = createGlobalStyle`
 const App = () => {
     return (
         <>
-        <Nav/>
         <Router>
+            <Nav/>
             <Global/>
             <Switch>
                 <Route path="/" exact component={Index} />
+                <Route render = {() => <div>ERROR</div>}/>
             </Switch>
         </Router>
         </>
