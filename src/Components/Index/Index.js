@@ -39,14 +39,11 @@ const Index = ({history}) => {
 
     const onSubmit = useCallback(e => {
         e.preventDefault();
-        
-        setLastlySearchName(prev => prev.concat(playerName));
-        
+            
         const jsonLastlySearchName = JSON.stringify(lastlySearchName);
         window.localStorage.setItem("lastlySearchName",jsonLastlySearchName);
 
         history.push(`/search/${playerName}`);
-        setPlayerName("");
     },[playerName]);
 
     return (

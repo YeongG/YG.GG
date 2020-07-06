@@ -1,6 +1,5 @@
 import React from 'react';
 import NavGameItem from './NavGameItem';
-import styled, { MenuWrap } from './styled';
 import {
     Header,
     HeaderH1,
@@ -8,6 +7,8 @@ import {
     NavWrap,
     Menu,
     MenuItem,
+    MenuWrap,
+    StyledLink
 } from './styled';
 
 const gameItemArray = [
@@ -42,10 +43,13 @@ const gameItemArray = [
 ];
 
 const Nav = () => {
+
     return (
         <NavWrap>
             <Header>
-                <HeaderH1>YG.GG</HeaderH1>
+                <HeaderH1>
+                    <StyledLink to="/">YG.GG</StyledLink>
+                </HeaderH1>
                 <NavGameListWrap>
                     {
                         gameItemArray.map(({
