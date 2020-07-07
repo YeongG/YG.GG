@@ -76,7 +76,7 @@ const Search = ({match}) => {
                         {tierData.map(data => <TierBox key={data.type} data={data} />)}
                     </BodySideWrap>
                     <BodyMainWrap>
-                        {gameItem.map(data => <GameItem key={data.id} gameId = {data.id}/>)}
+                        {gameItem.map((data,index) => <GameItem key={index} gameId = {data.id}/>)}
                     </BodyMainWrap>
                 </Body>
             </SearchWrap>

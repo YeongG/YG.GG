@@ -1,4 +1,5 @@
 import React from 'react';
+import Summoner from './Summoner';
 import { 
     GameItemWrap,
     GameStats,
@@ -20,7 +21,6 @@ import {
     Items,
     PlayersName,
     TeamWrap,
-    SummonerWrap
 } from './styled';
 
 const itemUrl = [
@@ -71,12 +71,7 @@ const GameItem = () => {
                 {itemUrl.map((src,index) => <Item key={index} src={src || "https://opgg-static.akamaized.net/images/pattern/opacity.1.png"} />)}
             </Items>
             <PlayersName>
-                <TeamWrap>
-                    <SummonerWrap>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSQrz69so01gGN2PgnhcdVTCHQvPVAZ9Yk0zg&usqp=CAU" /> 
-                        <div>한쿡사람ㅇㄴㅁ</div>
-                    </SummonerWrap>
-                </TeamWrap>
+                <TeamWrap></TeamWrap>
                 <TeamWrap></TeamWrap>
             </PlayersName>
         </GameItemWrap>
