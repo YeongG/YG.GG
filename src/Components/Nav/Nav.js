@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavGameItem from './NavGameItem';
 import {
     Header,
@@ -43,7 +43,9 @@ const gameItemArray = [
 ];
 
 const Nav = () => {
-
+    useEffect(() => {
+        console.log("Nav 랜더링");
+    });
     return (
         <NavWrap>
             <Header>

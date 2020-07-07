@@ -25,6 +25,9 @@ export const Body = styled.div`
 
 export const BodyMainWrap = styled.div`
     flex:1;
+    box-sizing:border-box;
+    padding:0 10px;
+    font-size: 12px;
 `;
 
 export const BodySideWrap = styled.div`
@@ -77,4 +80,174 @@ export const NowPlayGameBtn = styled.button`
     padding:10px;
     border-radius: 2px;
     font-size: 14px;
+`;
+
+export const TierBoxWrap = styled.div`
+    width: 100%;
+    color: #879292;
+    position: relative;
+    background-color: #f2f2f2;
+    padding: 5px 0;
+    border: 1px solid #cdd2d2;
+    box-shadow: 0 1px #dcdfdf;
+    background: #f2f2f2;
+    border-radius: 2px;
+    display:flex;
+
+    & > div {
+        flex:1;
+    }
+`;
+
+export const StyledImg = styled.img`
+    width:90%;
+`;
+
+export const StyledImgWrap = styled.div`
+    text-align: center;
+`;
+
+export const SummonerInfoWrap = styled.div`
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    & > div {
+        margin:2px 0;
+    }
+    & > div:nth-child(1) {
+        font-size: 13px;
+        color: #879292;
+    }
+    & > div:nth-child(2) {
+        font-size: 17px;
+        font-weight: bold;
+        color: #1f8ecd;
+    }
+`;
+
+export const LeaguePorint = styled.span`
+    color: #555e5e;
+    font-weight: bold;
+`;
+
+export const GameItemWrap = styled.div`
+    border-radius:3px;
+    margin-bottom:8px;
+    border: 1px solid #cdd2d2;
+    border-color: #99b9cf;
+    background-color: #a3cfec;
+    width: 689px;
+    display:flex;
+
+    & > div {
+        box-sizing:border-box;
+        padding:10px 0;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    }
+`;
+
+export const GameStats = styled.div`
+    width: 70px;
+    text-align:center;
+`;
+
+export const GameType = styled.div`
+    text-align: center;
+    font-size: 11px;
+    color: #555;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+
+export const Bar = styled.div`
+    background: #99b9cf;
+    display: block;
+    width: 27px;
+    margin: 5px auto;
+    height: 2px;
+`;
+
+export const GameResult = styled.div`
+    color:${({isWin}) => isWin ? "#1a78ae" : "#c6443e"} ;
+    font-weight:bold;
+`;
+
+export const GameSettingInfo = styled.div`
+    width:100px;
+`;
+
+export const ImgsWrap = styled.div`
+    display:flex;
+`;
+
+export const ChampionImg = styled.img`
+    width:46px;
+    height:46px;
+    border-radius:100%;
+`;
+
+
+export const Spell = styled.img`
+    border-radius:3px;
+`;
+
+export const Roon = styled.img`
+    border-radius:100%;
+
+    &:nth-child(1) {
+        background-color:black; 
+    }
+`;
+
+export const SpellWrap = styled.div`
+    margin-left:2px;
+`;
+
+export const ChampionName = styled.div`
+    text-align:center;
+    margin-top: 8px;
+    font-size: 11px;
+    color: #555;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`
+export const KDAWrap = styled.div`
+    font-size:11px;
+    text-align:center;
+    width:113px;
+`;
+
+export const KDA = styled.div`
+    color: #879292;
+    font-size: 15px;
+    white-space: nowrap;
+    & > span {
+        font-weight:bold;
+    }
+
+    & > span:nth-child(1) {
+        color: #555e5e;
+    }
+
+    & > span:nth-child(3) {
+        color: #555e5e;
+    }
+
+    & > span:nth-child(2) {
+        color:#c6443e;
+    }
+`;
+
+export const KDARatio = styled.div`
+    color: #555e5e;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 6px;
 `;

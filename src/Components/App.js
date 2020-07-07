@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Index from '../Components/Index/Index';
 import { createGlobalStyle } from 'styled-components';
 import Nav from '../Components/Nav/Nav';
@@ -18,6 +18,9 @@ const Global = createGlobalStyle`
 
 
 const App = () => {
+    useEffect(() => {
+        console.log("App 랜더링");
+    });
     return (
         <>
         <Router>

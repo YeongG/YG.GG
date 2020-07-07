@@ -18,6 +18,10 @@ import {
 } from './styled';
 
 const Index = ({history}) => {
+
+    useEffect(() => {
+        console.log("Index 랜더링");
+    });
     const [isFocus, setIsFocus] = useState(false);
     const [lastlySearchName,setLastlySearchName] = useState([]);
     const [playerName,setPlayerName] = useState("");

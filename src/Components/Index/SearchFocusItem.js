@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, memo } from 'react';
 import xLogo from './x.png';
 import { 
     SearchFocusItemElements,
@@ -6,6 +6,9 @@ import {
 } from './styled';
 
 const SearchFocusItem = ({children}) => {
+    useEffect(() => {
+        console.log("SearchFocusItem 랜더링");
+    });
     return (
         <SearchFocusItemElements>
             <SearchFocusItemText>{children}</SearchFocusItemText>
@@ -13,4 +16,4 @@ const SearchFocusItem = ({children}) => {
     );
 }
 
-export default SearchFocusItem;
+export default memo(SearchFocusItem);

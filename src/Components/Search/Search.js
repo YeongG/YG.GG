@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PrevRankItem from './PrevRankItem';
 import TierBox from './TierBox';
+import GameItem from './GameItem';
 import {
     Header,
     SearchWrap,
@@ -14,6 +15,8 @@ import {
     Body,
     BodyMainWrap
 } from './styled';
+
+const gameItem = [1,2,3];
 
 const seasonTierData = [
     {
@@ -38,9 +41,12 @@ const tierData = [
         win:20,
         lose:24
     }
-]
+];
 
 const Search = ({match}) => {
+    useEffect(() => {
+        console.log("Search 랜더링");
+    });
     useEffect(() => {
         const { userName } = match.params;
     },[]);
@@ -67,9 +73,11 @@ const Search = ({match}) => {
                 </Header>
                 <Body>
                     <BodySideWrap>
-                        {tierData.map(data => <TierBox data={data} />)}
+                        {tierData.map(data => <TierBox key={data.type} data={data} />)}
                     </BodySideWrap>
-                    <BodyMainWrap>dsa</BodyMainWrap>
+                    <BodyMainWrap>
+                        {gameItem.map(data => <GameItem gameId = {data.id}/>)}
+                    </BodyMainWrap>
                 </Body>
             </SearchWrap>
         </>
