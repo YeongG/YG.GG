@@ -251,3 +251,67 @@ export const KDARatio = styled.div`
     font-weight: bold;
     margin-top: 6px;
 `;
+
+export const Stats = styled.div`
+    width:90px;
+    font-size: 12px;
+    text-align: center;
+    color: #555e5e;
+    & > div {
+        margin:1px 0;
+    }
+    & > div:nth-child(3) {
+        color:#c6443e;
+    }
+`;
+
+export const Items = styled.div`
+    width:110px;
+    flex-wrap:wrap;
+    align-content:center;
+    
+    flex-direction:row !important;
+`;
+
+export const Item = styled.div`
+    background-image:url(${({src}) => src});
+    width:22px;
+    height:22px;
+    border-radius:3px;
+    margin-top:2px;
+    margin-right:2px;
+`;
+
+export const PlayersName = styled.div`
+    width:170px;
+    flex-direction:row !important;
+`;
+
+export const TeamWrap = styled.div`
+    flex:1;
+    height:100%;
+`;
+
+export const SummonerWrap = styled.div`
+    width: 80px;
+    height: 18px;
+    margin-left: 3px;
+    text-align: left;
+    font-size: 11px;
+    color: #555;
+    display:flex;
+    align-items:center;
+
+    & > img {
+        width: 16px;
+        height: 16px;
+    }
+
+    & > div {
+        margin-left:3px;
+        flex:1;
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+    }
+`;

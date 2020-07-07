@@ -14,8 +14,25 @@ import {
     ChampionName,
     KDAWrap,
     KDA,
-    KDARatio
+    KDARatio,
+    Stats,
+    Item,
+    Items,
+    PlayersName,
+    TeamWrap,
+    SummonerWrap
 } from './styled';
+
+const itemUrl = [
+    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
+    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
+    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
+    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
+    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
+    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
+    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
+    ""
+]
 
 const GameItem = () => {
     return (
@@ -45,6 +62,23 @@ const GameItem = () => {
                 </KDA>
                 <KDARatio>3:00 평점</KDARatio>
             </KDAWrap>
+            <Stats>
+                <div>레벨17</div>
+                <div>221 (6.1) CS</div>
+                <div>킬관여 43%</div>
+            </Stats>
+            <Items>
+                {itemUrl.map((src,index) => <Item key={index} src={src || "https://opgg-static.akamaized.net/images/pattern/opacity.1.png"} />)}
+            </Items>
+            <PlayersName>
+                <TeamWrap>
+                    <SummonerWrap>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSQrz69so01gGN2PgnhcdVTCHQvPVAZ9Yk0zg&usqp=CAU" /> 
+                        <div>한쿡사람ㅇㄴㅁ</div>
+                    </SummonerWrap>
+                </TeamWrap>
+                <TeamWrap></TeamWrap>
+            </PlayersName>
         </GameItemWrap>
     );
 }
