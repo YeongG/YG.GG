@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PrevRankItem from './PrevRankItem';
 import TierBox from './TierBox';
 import GameItem from './GameItem';
+import { requestAPI } from '../../lib/api';
+
 import {
     Header,
-    SearchWrap,
+    SearchWrap, 
     Global,
     PrevRankWrap,
     ProfileWrap,
@@ -15,40 +17,32 @@ import {
     Body,
     BodyMainWrap
 } from './styled';
-
-const gameItem = [1,2,3];
-
-const seasonTierData = [
-    {
-        season:"S7",
-        rank:"Siliver",
-    },
-    {
-        season:"S8",
-        rank:"Gold",
-    },
-    {
-        season:"S9",
-        rank:"Platinum",
-    }
-];
-
-const tierData = [
-    {
-        type:"솔로랭크",
-        rank:"GOLD",
-        tier:1,
-        win:20,
-        lose:24
-    }
-];
+import { useSelector } from 'react-redux';
 
 const Search = ({match}) => {
+    // const state = 
+    const [ summonerData, setSummonerData ] = useState(null);
+    const [ summonerTierData, setSummonerTierData ] = useState(null);
     useEffect(() => {
         console.log("Search 랜더링");
     });
     useEffect(() => {
         const { userName } = match.params;
+        (async() => {
+            try {
+                const { data : summonerData } = await requestAPI(`summoner/v4/summoners/by-name/${userName}`)
+                setSummonerData(summonerData);
+                
+
+                const { data : summonerTierData } = await requestAPI(`league/v4/entries/by-summoner/${summonerData.id}`);
+                // console.log(summonerTierData);  
+                // const soloRankData = summonerTierData.find(data => data.queueType === "RANKED_SOLO_5x5") || null;
+                setSummonerTierData(summonerTierData);
+                
+            } catch(err) {
+                console.log(err);
+            }
+        })();
     },[]);
 
     return (
@@ -57,26 +51,28 @@ const Search = ({match}) => {
             <SearchWrap>
                 <Header>
                     <PrevRankWrap>
-                        {seasonTierData.map(({season, rank}) => <PrevRankItem 
+                        {/* {seasonTierData.map(({season, rank}) => <PrevRankItem 
                             season={season}
                             rank={rank}
                             key={season}
-                        />)}
+                        />)} */}
                     </PrevRankWrap>
-                    <ProfileWrap>
-                        <ProfileImgWrap></ProfileImgWrap>
-                        <ProfileDataWrap>
-                            <span>회색빛돌고래</span>
-                            <NowPlayGameBtn>인게임 정보</NowPlayGameBtn>
-                        </ProfileDataWrap>          
-                    </ProfileWrap>
+                    { summonerData && (
+                        <ProfileWrap>
+                            <ProfileImgWrap src={`http://ddragon.leagueoflegends.com/cdn/10.13.1/img/profileicon/${summonerData.profileIconId}.png`} />
+                            <ProfileDataWrap>
+                                <span>{summonerData.name}</span>
+                                <NowPlayGameBtn>인게임 정보</NowPlayGameBtn>
+                            </ProfileDataWrap>          
+                        </ProfileWrap>
+                    )}
                 </Header>
                 <Body>
                     <BodySideWrap>
-                        {tierData.map(data => <TierBox key={data.type} data={data} />)}
+                        {summonerTierData && summonerTierData.map(data => <TierBox key={data.queueType} tierData={data} />)}
                     </BodySideWrap>
                     <BodyMainWrap>
-                        {gameItem.map((data,index) => <GameItem key={index} gameId = {data.id}/>)}
+                        {/* {gameItem.map((data,index) => <GameItem key={index} gameId = {data.id}/>)} */}
                     </BodyMainWrap>
                 </Body>
             </SearchWrap>

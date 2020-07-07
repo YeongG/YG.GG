@@ -55,7 +55,7 @@ export const ProfileWrap = styled.div`
     display:flex;
 `;
 
-export const ProfileImgWrap = styled.div`
+export const ProfileImgWrap = styled.img`
     width:100px;
     height:100px;
     background-color:red;
@@ -93,6 +93,7 @@ export const TierBoxWrap = styled.div`
     background: #f2f2f2;
     border-radius: 2px;
     display:flex;
+    margin:10px 0;
 
     & > div {
         flex:1;
@@ -100,7 +101,7 @@ export const TierBoxWrap = styled.div`
 `;
 
 export const StyledImg = styled.img`
-    width:90%;
+    width:70%;
 `;
 
 export const StyledImgWrap = styled.div`
