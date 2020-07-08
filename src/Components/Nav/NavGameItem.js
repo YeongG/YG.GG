@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { 
     NavGameItemWrap,
     NavGameImg
@@ -16,4 +16,4 @@ const NavGameItem = ({src,gameTitle}) => {
     );
 }
 
-export default NavGameItem;
+export default memo(NavGameItem);

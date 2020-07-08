@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PrevRankItem from './PrevRankItem';
 import TierBox from './TierBox';
 import GameItem from './GameItem';
-import { requestAPI } from '../../lib/api';
+import { requestAPI, getMatchesData, getGameDataArr } from '../../lib/api';
 import { add } from '../../Modules/searchPlayerName';
 import {
     Header,
@@ -24,6 +24,8 @@ const Search = ({match}) => {
     const [ summonerData, setSummonerData ] = useState(null);
     const [ summonerTierData, setSummonerTierData ] = useState(null);
     const [ leagueData, setLeagueData ] = useState(null);
+
+    const  endIndex = useRef(10);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -33,16 +35,26 @@ const Search = ({match}) => {
         const { userName } = match.params;
         (async() => {
             try {
-                const { data : summonerData } = await requestAPI(`summoner/v4/summoners/by-name/${userName}`)
+                const { data : summonerData } = await requestAPI(`summoner/v4/summoners/by-name/${userName}`);
+
                 dispatch(add(userName));
                 setSummonerData(summonerData);
                 
-
                 const { data : summonerTierData } = await requestAPI(`league/v4/entries/by-summoner/${summonerData.id}`);
-                const soloRankData = summonerTierData.find(data => data.queueType === "RANKED_SOLO_5x5") || null;
+                setSummonerTierData(summonerTierData);
+                
+                // const soloRankData = summonerTierData.find(data => data.queueType === "RANKED_SOLO_5x5") || null;
                 // 솔로랭크데이터 없으면 NULL
 
-                setSummonerTierData(summonerTierData);
+                const {
+                    data:{
+                        matches:matchData
+                    }
+                } = await getMatchesData(summonerData.accountId, endIndex.current-10, endIndex.current);
+                
+                const gameData = await getGameDataArr(matchData);
+                setLeagueData(gameData);
+
             } catch(err) {
                 console.log(err);
             }
@@ -73,10 +85,20 @@ const Search = ({match}) => {
                 </Header>
                 <Body>
                     <BodySideWrap>
-                        {summonerTierData && summonerTierData.map(data => <TierBox key={data.queueType} tierData={data} />)}
+                        {summonerTierData && summonerTierData.map(data => 
+                            (<TierBox 
+                                key={data.queueType} 
+                                tierData={data} 
+                            />)
+                        )}
                     </BodySideWrap>
                     <BodyMainWrap>
-                        {/* {gameItem.map((data,index) => <GameItem key={index} gameId = {data.id}/>)} */}
+                        {leagueData && leagueData.map(gameData => 
+                            (<GameItem 
+                                key={gameData.gameId} 
+                                gameData = {gameData}
+                            />)
+                        )}
                     </BodyMainWrap>
                 </Body>
             </SearchWrap>

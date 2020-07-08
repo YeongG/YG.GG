@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, memo } from 'react';
+import championJSON from './chamiponJSON.json';
+import spellJSON from './spellJSON.json';
 import Summoner from './Summoner';
 import { 
     GameItemWrap,
@@ -23,52 +25,75 @@ import {
     TeamWrap,
 } from './styled';
 
-const itemUrl = [
-    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
-    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
-    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
-    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
-    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
-    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
-    "https://opgg-static.akamaized.net/images/lol/item/3031.png?image=q_auto,w_22&v=1591083841",
-    ""
-]
+const GameItem = ({gameData}) => {
+    useEffect(() => {
+        console.log("GameData 랜더링");
+    },[]);
 
-const GameItem = () => {
+    const {
+        summonerData : {
+            championId,
+            spell1Id,
+            spell2Id,
+            stats:{
+                assists,
+                champLevel,
+                deaths,
+                item0,
+                item1,
+                item2,
+                item3,
+                item4,
+                item5,
+                item6,
+                kills,
+                win,
+                perk0,
+                perkSubStyle
+            }
+        }
+    } = gameData;
+    const itemArray = [item0,item1,item2,item6,item3,item4,item5,""];
+
     return (
-        <GameItemWrap>
+        <GameItemWrap isWin={win}>
             <GameStats>
                 <GameType>솔랭</GameType>
                 <Bar/>
-                <GameResult isWin="true">승리</GameResult>
+                <GameResult isWin={win}>{win ? "승리" : "패배"}</GameResult>
             </GameStats>
             <GameSettingInfo>
                 <ImgsWrap>
-                    <ChampionImg src="https://opgg-static.akamaized.net/images/lol/champion/TahmKench.png?image=q_auto,w_46&v=1591083841" />
+                    <ChampionImg src={`http://ddragon.leagueoflegends.com/cdn/10.14.1/img/champion/${(championJSON[championId].engName).replace(/ /g,"")}.png`} />
                     <SpellWrap>
-                        <Spell src="https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png?image=q_auto,w_22&v=1591083841" />
-                        <Spell src="https://opgg-static.akamaized.net/images/lol/spell/SummonerSnowball.png?image=q_auto,w_22&v=1591083841" />
+                        <Spell src={`http://ddragon.leagueoflegends.com/cdn/10.14.1/img/spell/${spellJSON[spell1Id]}.png`} />
+                        <Spell src={`http://ddragon.leagueoflegends.com/cdn/10.14.1/img/spell/${spellJSON[spell2Id]}.png`} />
                     </SpellWrap>
                     <SpellWrap>
-                        <Roon src="https://opgg-static.akamaized.net/images/lol/perk/8437.png?image=q_auto,w_22&v=1591083841/" />
-                        <Roon src="https://opgg-static.akamaized.net/images/lol/perkStyle/8000.png?image=q_auto,w_22&v=1591083841" />
+                        <Roon src={`https://opgg-static.akamaized.net/images/lol/perk/${perk0}.png?image=q_auto,w_22&v=1591083841`} />
+                        <Roon src={`https://opgg-static.akamaized.net/images/lol/perkStyle/${perkSubStyle}.png?image=q_auto,w_22&v=1591083841`} />
                     </SpellWrap>
                 </ImgsWrap>
-                <ChampionName>세트</ChampionName>
+                <ChampionName>{championJSON[championId].krName}</ChampionName>
             </GameSettingInfo>
             <KDAWrap>
                 <KDA>
-                    <span>7</span> / <span>7</span> / <span>7</span>
+                    <span>{kills}</span> / <span>{deaths}</span> / <span>{assists}</span>
                 </KDA>
-                <KDARatio>3:00 평점</KDARatio>
+                <KDARatio>{((kills+assists)/deaths).toFixed(2)} 평점</KDARatio>
             </KDAWrap>
             <Stats>
-                <div>레벨17</div>
-                <div>221 (6.1) CS</div>
-                <div>킬관여 43%</div>
+                <div>{champLevel} 레벨</div>
+                {/* <div>221 (6.1) CS</div>
+                <div>킬관여 43%</div> */}
             </Stats>
             <Items>
-                {itemUrl.map((src,index) => <Item key={index} src={src || "https://opgg-static.akamaized.net/images/pattern/opacity.1.png"} />)}
+                {itemArray.map((id,index) => (
+                    <Item 
+                        src={(id && `http://ddragon.leagueoflegends.com/cdn/10.14.1/img/item/${id}.png`) || "https://opgg-static.akamaized.net/images/pattern/opacity.1.png"} 
+                        key={index}
+                    />
+                ))}
             </Items>
             <PlayersName>
                 <TeamWrap></TeamWrap>
@@ -78,4 +103,4 @@ const GameItem = () => {
     );
 }
 
-export default GameItem;
+export default memo(GameItem);

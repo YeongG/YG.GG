@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 
 export const Global = createGlobalStyle`
     body {
@@ -93,7 +93,7 @@ export const TierBoxWrap = styled.div`
     background: #f2f2f2;
     border-radius: 2px;
     display:flex;
-    margin:10px 0;
+    margin-bottom:10px;
 
     & > div {
         flex:1;
@@ -135,8 +135,6 @@ export const GameItemWrap = styled.div`
     border-radius:3px;
     margin-bottom:8px;
     border: 1px solid #cdd2d2;
-    border-color: #99b9cf;
-    background-color: #a3cfec;
     width: 689px;
     display:flex;
 
@@ -148,6 +146,14 @@ export const GameItemWrap = styled.div`
         justify-content:center;
         align-items:center;
     }
+
+    ${props => props.isWin ? css`
+        border-color: #99b9cf;
+        background-color: #a3cfec;
+    ` : css`
+        background-color: #e2b6b3;
+        border-color: #cea7a7;
+    `};
 `;
 
 export const GameStats = styled.div`
@@ -174,7 +180,7 @@ export const Bar = styled.div`
 `;
 
 export const GameResult = styled.div`
-    color:${({isWin}) => isWin ? "#1a78ae" : "#c6443e"} ;
+    color:${({isWin}) => isWin ? "#1a78ae" : "#c6443e"};
     font-weight:bold;
 `;
 
@@ -195,6 +201,8 @@ export const ChampionImg = styled.img`
 
 export const Spell = styled.img`
     border-radius:3px;
+    width:22px;
+    height:22px;
 `;
 
 export const Roon = styled.img`
@@ -276,6 +284,7 @@ export const Items = styled.div`
 
 export const Item = styled.div`
     background-image:url(${({src}) => src});
+    background-size:cover;
     width:22px;
     height:22px;
     border-radius:3px;

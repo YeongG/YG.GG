@@ -13,6 +13,7 @@ export const load = () => ({
 const searchPlayerNameReducer = (state = [], action) => {
     switch(action.type) {
         case ADD:
+            if(state.find(name => name === action.playerName)) return state; 
             const newArray = state.concat(action.playerName);
             const strJson = JSON.stringify(newArray);
             window.localStorage.setItem("lastlySeachName",strJson);
