@@ -5,12 +5,12 @@ import {
     SearchFocusItemText,
 } from './styled';
 
-const SearchFocusItem = ({children}) => {
+const SearchFocusItem = ({children,to}) => {
     useEffect(() => {
         console.log("SearchFocusItem 랜더링");
     });
     return (
-        <SearchFocusItemElements>
+        <SearchFocusItemElements to={to}>
             <SearchFocusItemText>{children}</SearchFocusItemText>
         </SearchFocusItemElements>
     );

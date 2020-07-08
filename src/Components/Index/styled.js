@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-
+import { Link } from 'react-router-dom';
 
 export const Global = createGlobalStyle`
     body {
@@ -70,8 +70,9 @@ export const SearchFocusItemWrap = styled.div`
     flex-wrap:wrap;
 `;
 
-export const SearchFocusItemElements = styled.div`
+export const SearchFocusItemElements = styled(Link)`
     width:33.3%;
+    display:block;
     font-size:13px;
     box-sizing:border-box;
     padding:3px 15px;

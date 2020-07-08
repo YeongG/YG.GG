@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 import logo from './logo.png';
 import SearchFocusItem from './SearchFocusItem';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     Global,
     IndexWrap, 
@@ -16,14 +17,18 @@ import {
     SearchFocusIntroduce,
     SearchFocusItemWrap
 } from './styled';
+import { load } from '../../Modules/searchPlayerName';
 
 const Index = ({history}) => {
-
+    const dispatch = useDispatch();
     useEffect(() => {
         console.log("Index 랜더링");
     });
+    useEffect(() => {
+        dispatch(load());
+    },[]);
+    const lastLySearchName = useSelector(({searchPlayerName}) => searchPlayerName);
     const [isFocus, setIsFocus] = useState(false);
-    const [lastlySearchName,setLastlySearchName] = useState([]);
     const [playerName,setPlayerName] = useState("");
 
     const changeFocus = useCallback(e => {
@@ -34,18 +39,8 @@ const Index = ({history}) => {
         setPlayerName(e.target.value);
     },[]);
 
-    useEffect(() => {
-        const lastlySearchName = window.localStorage.getItem("lastlySearchName") || "[]";
-        const jsonLastlySearchName = JSON.parse(lastlySearchName);
-
-        setLastlySearchName(jsonLastlySearchName);
-    },[]);
-
     const onSubmit = useCallback(e => {
         e.preventDefault();
-            
-        const jsonLastlySearchName = JSON.stringify(lastlySearchName);
-        window.localStorage.setItem("lastlySearchName",jsonLastlySearchName);
 
         history.push(`/search/${playerName}`);
     },[playerName]);
@@ -57,15 +52,15 @@ const Index = ({history}) => {
                 <LogoWrap>
                     <img src={logo} />
                 </LogoWrap>
-                <SearchForm onSubmit={onSubmit} onFocus={changeFocus} onBlur={changeFocus}>
+                <SearchForm onSubmit={onSubmit} onClick={changeFocus} >
                     <SearchInput onChange={changePlayerName} value={playerName} placeholder="소환사명" />
                     <SubmitButton>.GG</SubmitButton>
-                    {isFocus && (
+                    { isFocus && (
                     <SearchFocusWrap>
                         <SearchFocusIntroduce>최근검색</SearchFocusIntroduce>
                         <SearchFocusItemWrap>
-                            {lastlySearchName.map(playerName => (
-                                <SearchFocusItem key={playerName}>{playerName}</SearchFocusItem>
+                            {lastLySearchName.map(playerName => (
+                                <SearchFocusItem to={`/search/${playerName}`} key={playerName}>{playerName}</SearchFocusItem>
                             ))}
                         </SearchFocusItemWrap>
                     </SearchFocusWrap>

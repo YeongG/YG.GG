@@ -1,14 +1,26 @@
-const ADD = "player/ADD";
+const ADD = "PLAYER/ADD";
+const LOAD = "PLAYER/LOAD";
 
-const add = playerName => ({
+export const add = playerName => ({
     type:ADD,
     playerName
+});
+
+export const load = () => ({
+    type:LOAD
 });
 
 const searchPlayerNameReducer = (state = [], action) => {
     switch(action.type) {
         case ADD:
-            return state.concat(action.playerName);
+            const newArray = state.concat(action.playerName);
+            const strJson = JSON.stringify(newArray);
+            window.localStorage.setItem("lastlySeachName",strJson);
+            return newArray;
+        case LOAD:
+            const strObject = window.localStorage.getItem("lastlySeachName");
+            const jsonArray = JSON.parse(strObject);
+            return jsonArray;
         default:
             return state;
     }
