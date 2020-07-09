@@ -1,11 +1,13 @@
 import React from 'react';
 import { SummonerWrap } from './styled';
 
-const Summoner = () => {
+const Summoner = ({championName,nickname}) => {
+
+
     return (
         <SummonerWrap>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSQrz69so01gGN2PgnhcdVTCHQvPVAZ9Yk0zg&usqp=CAU" /> 
-            <div>한쿡사람ㅇㄴㅁ</div>
+            <img alt="img" src={`http://ddragon.leagueoflegends.com/cdn/10.14.1/img/champion/${(championName).replace(/ /g,"")}.png`} /> 
+            <div>{nickname}</div>
         </SummonerWrap>
     );
 }

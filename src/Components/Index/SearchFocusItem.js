@@ -1,5 +1,5 @@
 import React, { useEffect, memo } from 'react';
-import xLogo from './x.png';
+// import xLogo from './x.png';
 import { 
     SearchFocusItemElements,
     SearchFocusItemText,

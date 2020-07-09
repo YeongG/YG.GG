@@ -28,6 +28,11 @@ export const BodyMainWrap = styled.div`
     box-sizing:border-box;
     padding:0 10px;
     font-size: 12px;
+    /* height:600px;
+    overflow-y:scroll;
+    ::-webkit-scrollbar {
+        display:none;
+    } */
 `;
 
 export const BodySideWrap = styled.div`

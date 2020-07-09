@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import PrevRankItem from './PrevRankItem';
+// import PrevRankItem from './PrevRankItem';
 import TierBox from './TierBox';
 import GameItem from './GameItem';
 import { requestAPI, getMatchesData, getGameDataArr } from '../../lib/api';
@@ -51,8 +51,8 @@ const Search = ({match}) => {
                         matches:matchData
                     }
                 } = await getMatchesData(summonerData.accountId, endIndex.current-10, endIndex.current);
-                
                 const gameData = await getGameDataArr(matchData);
+                
                 setLeagueData(gameData);
 
             } catch(err) {

@@ -5,7 +5,7 @@ import Summoner from './Summoner';
 import { 
     GameItemWrap,
     GameStats,
-    GameType,
+    // GameType,
     Bar,
     GameResult,
     ImgsWrap,
@@ -27,10 +27,12 @@ import {
 
 const GameItem = ({gameData}) => {
     useEffect(() => {
-        console.log("GameData 랜더링");
+        console.log("GameItem 랜더링");
     },[]);
 
     const {
+        participants:playerGameDataArray,
+        participantIdentities:playerDataArray,
         summonerData : {
             championId,
             spell1Id,
@@ -53,12 +55,18 @@ const GameItem = ({gameData}) => {
             }
         }
     } = gameData;
+
     const itemArray = [item0,item1,item2,item6,item3,item4,item5,""];
+    const playerGameDataArray1 = playerGameDataArray.slice(0,5);
+    const playerGameDataArray2 = playerGameDataArray.slice(5,10);
+
+    const playerDataArray1 = playerDataArray.slice(0,5);
+    const playerDataArray2 = playerDataArray.slice(5,10);
 
     return (
         <GameItemWrap isWin={win}>
             <GameStats>
-                <GameType>솔랭</GameType>
+                {/* <GameType>솔랭</GameType> */}
                 <Bar/>
                 <GameResult isWin={win}>{win ? "승리" : "패배"}</GameResult>
             </GameStats>
@@ -96,8 +104,28 @@ const GameItem = ({gameData}) => {
                 ))}
             </Items>
             <PlayersName>
-                <TeamWrap></TeamWrap>
-                <TeamWrap></TeamWrap>
+                <TeamWrap>
+                    {
+                        playerGameDataArray1.map((playerData,index) => (
+                            <Summoner 
+                                nickname={playerDataArray1[index].player.summonerName} 
+                                championName={championJSON[playerData.championId].engName}
+                                key={playerData.championId} 
+                            />
+                        ))  
+                    }
+                </TeamWrap>
+                <TeamWrap>
+                    {
+                        playerGameDataArray2.map((playerData,index) => (
+                            <Summoner 
+                                nickname={playerDataArray2[index].player.summonerName} 
+                                championName = {championJSON[playerData.championId].engName}
+                                key={playerData.championId} 
+                            />
+                        ))  
+                    }
+                </TeamWrap>
             </PlayersName>
         </GameItemWrap>
     );

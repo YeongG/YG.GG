@@ -50,7 +50,7 @@ const Index = ({history}) => {
             <Global/>
             <IndexWrap>
                 <LogoWrap>
-                    <img src={logo} />
+                    <img alt="img" src={logo} />
                 </LogoWrap>
                 <SearchForm onSubmit={onSubmit} onClick={changeFocus} >
                     <SearchInput onChange={changePlayerName} value={playerName} placeholder="소환사명" />
