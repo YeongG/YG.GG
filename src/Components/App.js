@@ -37,3 +37,13 @@ const App = () => {
 }
 
 export default App;
+
+
+
+
+
+const object = {};
+
+const linkedObject = {
+    linked:object,
+}

@@ -19,6 +19,20 @@ import {
 } from './styled';
 import { load } from '../../Modules/searchPlayerName';
 
+class Component extends React.Component {
+    componentDidUpdate() {
+
+    }
+    componentDidMount(){
+        
+    }
+    render(){
+        return (
+            <div></div>
+        );
+    }
+}
+
 const Index = ({history}) => {
     const dispatch = useDispatch();
     useEffect(() => {
