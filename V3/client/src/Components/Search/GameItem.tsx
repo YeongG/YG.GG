@@ -1,8 +1,11 @@
-import React, { useEffect, memo } from 'react';
-import championJSON from './chamiponJSON.json';
-import spellJSON from './spellJSON.json';
+import React, { useEffect, memo, FC } from 'react';
+import championJSONOriginal from './json/chamiponJSON.json';
+import spellJSONOriginal from './json/spellJSON.json';
+
+const championJSON = championJSONOriginal as ChampJsonType;
+const spellJSON = spellJSONOriginal as SpellJsonType;
 import Summoner from './Summoner';
-import { 
+import {
     GameItemWrap,
     GameStats,
     // GameType,
@@ -24,8 +27,57 @@ import {
     PlayersName,
     TeamWrap,
 } from './styled';
+   
+interface ChampJsonType {
+    [key:string]:{    
+        krName:string,
+        engName:string
+    }
+}
 
-const GameItem = ({gameData}) => {
+interface SpellJsonType {
+    [key:string]:string   
+}
+
+interface UserDataType {
+    player:{
+        summonerName:string
+    }
+}
+
+interface UserGameDataType {
+    championId:number
+}
+
+interface GameDataType {
+    gameData:{
+        participants:UserGameDataType[],
+        participantIdentities:UserDataType[],
+        summonerData:{
+            championId:number,
+            spell1Id:number,
+            spell2Id:number,
+            stats:{
+                assists:number,
+                champLevel:number,
+                deaths:number,
+                item0:number,
+                item1:number,
+                item2:number,
+                item3:number,
+                item4:number,
+                item5:number,
+                item6:number,
+                kills:number,
+                win:boolean,
+                perk0:number,
+                perkSubStyle:number,
+            }
+        }
+    }
+}
+
+const GameItem:FC<GameDataType> = ({gameData}) => {
     useEffect(() => {
         console.log("GameItem 랜더링");
     },[]);

@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { SummonerWrap } from './styled';
 
-const Summoner = ({championName,nickname}) => {
+interface SummonerType {
+    championName:string,
+    nickname:string,
+}
 
+const Summoner:FC<SummonerType> = ({championName,nickname}) => {
 
     return (
         <SummonerWrap>

@@ -136,7 +136,7 @@ export const LeaguePorint = styled.span`
     font-weight: bold;
 `;
 
-export const GameItemWrap = styled.div`
+export const GameItemWrap = styled.div<{isWin:boolean}>`
     border-radius:3px;
     margin-bottom:8px;
     border: 1px solid #cdd2d2;
@@ -184,7 +184,7 @@ export const Bar = styled.div`
     height: 2px;
 `;
 
-export const GameResult = styled.div`
+export const GameResult = styled.div<{isWin:boolean}>`
     color:${({isWin}) => isWin ? "#1a78ae" : "#c6443e"};
     font-weight:bold;
 `;
@@ -287,7 +287,7 @@ export const Items = styled.div`
     flex-direction:row !important;
 `;
 
-export const Item = styled.div`
+export const Item = styled.div<{src:string}>`
     background-image:url(${({src}) => src});
     background-size:cover;
     width:22px;
