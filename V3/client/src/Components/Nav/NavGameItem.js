@@ -1,0 +1,19 @@
+import React, { useEffect, memo } from 'react';
+import { 
+    NavGameItemWrap,
+    NavGameImg
+} from './styled';
+
+const NavGameItem = ({src,gameTitle}) => {
+    useEffect(() => {
+        console.log("NavGameItem 랜더링");
+    });
+    return (
+        <NavGameItemWrap>
+            <NavGameImg src={src} />
+            <span>{gameTitle}</span>
+        </NavGameItemWrap>
+    );
+}
+
+export default memo(NavGameItem);
