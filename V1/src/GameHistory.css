@@ -1,0 +1,139 @@
+.GameHistory {
+    width:800px;
+    margin:0 auto;
+    height:110px;
+    display:table;
+    text-align:center;
+    color:#555e5e;
+    margin-top:15px;
+}
+.Win {
+    border:1px solid #99b9cf;
+    background:#a3cfec;
+}
+.WinBarLine {
+    background-color: #99b9cf;
+    height:2px;
+    width:27px !important;
+    margin:5px auto;
+    display:block !important;
+}
+.LoseBarLine {
+    background-color: #cea7a7;
+    height:2px;
+    width:27px !important;
+    margin:5px auto;
+    display:block !important;
+}
+.Lose {
+    background-color:#e2b6b3;
+    border-color:#cea7a7;
+}
+.GameHistory > div {
+    display:table-cell;
+    width:10%;
+    vertical-align:middle;   
+}
+.GameInt {
+    color:#555;
+}
+.GameInfoS {
+    width:11% !important;
+}
+.GameInt > p:nth-of-type(1) {
+    font-size:0.95em;
+    font-weight:bold;
+}
+.GameInt > p:nth-of-type(2) {
+    font-size:0.8em;
+}
+.GameInt > p:nth-of-type(3) {
+    font-size:0.8em;
+    font-weight:bold;
+}
+.GameInt > p:nth-of-type(4) {
+    font-size:0.7em;
+}
+.CEOImageWrap {
+    display:inline-block;
+    width:46px;
+    vertical-align:middle;
+}
+.CEOImage {
+    border-radius:50%;
+    width:105%;
+}
+.GameSpell,.RoonWrap {
+    display:inline-block;
+    width:25px;
+    margin-left:8px;
+    vertical-align:middle;
+}
+.RoonWrap {
+    margin-left:3px;
+}
+.SpellImage,.RoonImage {
+    margin:0px;
+    width:100%;
+    border-radius:5px;
+}
+.ChampionName {
+    color:#555;
+    font-size: 0.85em;
+}
+.ChampionNameWrap {
+    margin-top:5px;
+}
+.KDATitle {
+    letter-spacing:3px;
+}
+.Kill,.Death,.Assist {
+    font-size:1.1em;
+    font-weight:bold;
+}
+.Death {
+    color:#c6443e;
+}
+.KillDet {
+    font-size:0.9em;
+    font-weight:bold;
+    margin-top:5px; 
+}
+.PlayerStats {
+    font-size:0.8em;
+}
+.ItemWrap {
+    width:110px;
+    display:inline-block;
+}
+.ItemImg {
+    margin:0 1px;
+    border-radius:4px;
+    width:22px;
+    height:22px;
+    float:left;
+}
+.Team {
+    width:50%;
+    float:left;
+}
+.AllPlayer {
+    width:21% !important;
+}
+.PlayerWrap {
+    overflow: hidden;
+    text-align:left;
+    margin:0;
+}
+.PlayerWrap > span {
+    cursor: pointer;
+    font-size:10.5px;
+}
+.PlayerWrap > span:hover {
+    color:red;
+}
+.PlayerChampionImg {
+    vertical-align:middle;
+    width:17px;
+    height:17px;
+}

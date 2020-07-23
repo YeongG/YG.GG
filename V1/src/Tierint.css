@@ -1,0 +1,45 @@
+.TierInt {
+    width:320px;
+    height:130px;
+    background:#f2f2f2;
+    border:1px solid #cdd2d2;
+    color:#879292;
+    display:inline-table;
+    padding:20px 8px;
+    margin:10px;
+}
+.TierInt-left {
+    height:100%;
+    text-align:center;
+    width:50%;
+    display:table-cell;
+    vertical-align: middle;
+}
+.TierInt-right {
+    width:50%;
+    height: 100%;
+    vertical-align: middle;
+    display:table-cell;
+}
+.tierImg {
+    width:120px;
+    height:120px;
+}
+.TierText {
+    color:#1f8ecd;
+    font-weight:bolder;
+    font-size:1.5em;
+}
+.GameType {
+    font-size:0.9em;
+}
+.LeaguePointText {
+    color:#555e5e;
+    font-weight:bold;
+}
+.GameInfo {
+    font-size:0.9em;
+}
+.WinBar {
+    font-size:0.9em;
+}

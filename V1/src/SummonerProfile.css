@@ -1,0 +1,42 @@
+.SummonerWrap {
+    width:1000px;
+    margin:0 auto;
+    position: relative;
+    top:30px;
+    display: table;
+}
+.SummonerWrap > div {
+    vertical-align: middle;
+}
+.ImgBorder {
+    display: table-cell;
+    width:120px;
+    height:120px;
+    text-align:center;
+}
+.ImgBorder > img {
+    position: relative;
+    top:2px;
+    border-radius:10px;
+    width:100px;
+    height:100px;
+}
+.Summoner {
+    display: table-cell;
+}
+.Summoner > div {
+    margin-left:30px;
+}
+.Summoner button {
+    border:1px solid #1a78ae;
+    background:#1f8ecd;
+    color:#f2f2f2;
+    padding:11px 14px 10px;
+    border-radius:2px;
+    font-size:14px;
+}
+.Summoner > div > p:nth-of-type(1) {
+    color:#242929;
+    font-size:20px;
+    font-weight:bold;
+}

@@ -1,0 +1,112 @@
+* {
+    margin:0;
+    padding:0;
+  }
+  body {
+    background:#5383e8;
+  }
+  .logo  a {
+    color:unset;
+    text-decoration:none;
+  }
+  nav {
+    background:#232f46;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  nav > .logo {
+    background: #5383e8;
+    width:150px;
+    color:white;
+    text-align:center;
+    font-weight:bolder;
+    font-size:30px;
+    height:50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  .language {
+    color:#c3cbd1;
+    width:70px;
+    font-size:13px;
+  }
+  .nav-right img {
+    width:15%;
+    margin-right:5px;
+  }
+  .nav-right {
+    margin-right:20px;
+    display:flex;
+    align-items: center; 
+  }
+  .login {
+    color:white;
+    background:#5383e8;
+    border:none;
+    border-radius:5px;
+    padding:5px 10px;
+  }
+  .menu {
+    height:50px;
+    border-bottom:1px solid #4171d6;
+    background: #5383e8;
+  }
+  .menu > ul {
+    margin:0 auto;
+    width:1300px;
+  }
+  .menu > ul > li {
+    display:inline-block;
+    padding:0 15px;
+    color:#b3cdff;
+  }
+  .main {
+    width:100%;
+    margin:0 auto;
+    background: #5383e8;
+    height:90.5vh;
+  }
+  .main {
+    display:flex;
+    flex-direction:column;
+  }
+  .find-button {
+    position: relative;
+    background:#5383e8;
+    border:none;
+    border-radius:5px;
+    font-weight:bolder;
+    font-size:20px;
+    color:white;
+    padding:10px 20px;
+    left:-8%;
+  }
+  .hide {
+    display:none;
+  }
+  .menu > ul {
+    line-height:50px;
+    height:100%;
+  }
+  .menu > ul > li {
+    height:100%;
+    margin:0 5px;
+  }
+  .menu > ul > li > span {
+    color:unset;
+    text-decoration:none;
+  }
+  .menu > ul > li:hover {
+    border-bottom:3px solid white;
+  }
+  .menu > ul > li:hover > span {
+    color:white;
+  }
+  .active {
+    border-bottom:3px solid white;
+  }
+  .active > span {
+    color:white !important;
+  }

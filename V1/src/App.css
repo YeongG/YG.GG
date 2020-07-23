@@ -1,0 +1,45 @@
+#findButton {
+    position: relative;
+    background: #5383e8;
+    border: none;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: 20px;
+    color: white;
+    padding: 10px 20px;
+    left: -8%;
+}
+.input-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+}
+.find-input {
+    color: #9b9b9b;
+    border: none;
+    background: white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+    padding: 30px 40px;
+    width: 50%;
+    border-radius: 10px;
+    font-size: 20px;
+}
+.playerWrap {
+    background:#EAEAEA;
+    width:100%;
+    min-width:1200px;
+    margin-top:30px;
+}
+.player {
+    width:1100px;
+    margin:0 auto;
+    margin-top:30px;
+    padding:20px;
+}
+.BtnWrap {
+    text-align:center;
+}
+.MoreBtn {
+    width:3%;
+}
