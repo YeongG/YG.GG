@@ -1,10 +1,11 @@
-import React, { useEffect, memo } from 'react';
+import React, { useEffect, memo, FC } from 'react';
 import { 
     NavGameItemWrap,
     NavGameImg
 } from './styled';
+import { GameItemType } from './Nav';
 
-const NavGameItem = ({src,gameTitle}) => {
+const NavGameItem:FC<GameItemType> = ({src,gameTitle}) => {
     useEffect(() => {
         console.log("NavGameItem 랜더링");
     });

@@ -11,7 +11,12 @@ import {
     StyledLink
 } from './styled';
 
-const gameItemArray = [
+export interface GameItemType {
+    src:string,
+    gameTitle:string,
+}
+
+const gameItemArray:GameItemType[] = [
     {
         src:"https://opgg-gnb.akamaized.net/static/images/icons/img-navi-lol-white.svg",
         gameTitle:"리그오브레전드"
