@@ -87,7 +87,7 @@ export const SearchFocusItemText = styled.div`
     text-align:center;
 `;
 
-export const SearchFocusItemStart = styled.div`
+export const SearchFocusItemStart = styled.div<{src:string}>`
     width: 20px;
     height: 20px;
     background-position: center center;

@@ -1,11 +1,15 @@
-import React, { useEffect, memo } from 'react';
-// import xLogo from './x.png';
+import React, { useEffect, memo, FC } from 'react';
 import { 
     SearchFocusItemElements,
     SearchFocusItemText,
 } from './styled';
 
-const SearchFocusItem = ({children,to}) => {
+interface SearchFocusItemProps {
+    to:string,
+    children:string
+}
+
+const SearchFocusItem:FC<SearchFocusItemProps> = ({children,to}) => {
     useEffect(() => {
         console.log("SearchFocusItem 랜더링");
     });
