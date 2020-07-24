@@ -1,18 +1,25 @@
-const GET_ACCOUNT:string = "account/GET_ACCOUNT" as const;
-const SUCCESS_ACCOUNT:string = "account/SUCCESS_ACCOUNT" as const;
-const FAIL_ACCOUNT:string = "account/FAIL_COUNT" as string;
+import { accountStateType } from "../../reducer/account";
+export const SUCCESS_ACCOUNT = "account/SUCCESS_ACCOUNT" as const;
+export const FAIL_ACCOUNT = "account/FAIL_ACCOUNT" as const;
+export const GET_ACCOUNT = "account/GET_ACCOUNT" as const;
 
-const successAccount = (payload) => ({
+export const getAccount = (payload:string) => ({
+    type:GET_ACCOUNT,
+    payload
+})
+
+export const successAccount = (payload:accountStateType) => ({
     type:SUCCESS_ACCOUNT,
     payload,
 });
 
-const failAccount = (payload) => ({
+export const failAccount = () => ({
     type:FAIL_ACCOUNT,
-    payload
 });
 
-type accountAction = ReturnType<
-    | typeof successAccount
-    | typeof failAccount    
->; 
+export type accountAction = ( 
+    | ReturnType<typeof successAccount> 
+    | ReturnType<typeof failAccount>
+);
+
+export type getAccountSaga = ReturnType<typeof getAccount>;
