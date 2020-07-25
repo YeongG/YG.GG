@@ -1,14 +1,11 @@
-import React, { useEffect, memo, FC } from 'react';
+import React, { useEffect, memo, FC, useCallback, MouseEvent } from 'react';
 import championJSONOriginal from './json/chamiponJSON.json';
 import spellJSONOriginal from './json/spellJSON.json';
-
-const championJSON = championJSONOriginal as ChampJsonType;
-const spellJSON = spellJSONOriginal as SpellJsonType;
+import { GameType } from '../../Modules/action/gamedata/interface';
 import Summoner from './Summoner';
 import {
     GameItemWrap,
     GameStats,
-    // GameType,
     Bar,
     GameResult,
     ImgsWrap,
@@ -27,6 +24,11 @@ import {
     PlayersName,
     TeamWrap,
 } from './styled';
+import { useDispatch } from 'react-redux';
+import { getAccount } from '../../Modules/action/account';
+
+const championJSON = championJSONOriginal as ChampJsonType;
+const spellJSON = spellJSONOriginal as SpellJsonType;
    
 interface ChampJsonType {
     [key:string]:{    
@@ -39,45 +41,17 @@ interface SpellJsonType {
     [key:string]:string   
 }
 
-interface UserDataType {
-    player:{
-        summonerName:string
-    }
+interface GameItemType {
+    gameData:GameType
 }
 
-interface UserGameDataType {
-    championId:number
-}
+const GameItem:FC<GameItemType> = ({gameData}) => {
+    const dispatch = useDispatch();
 
-interface GameDataType {
-    gameData:{
-        participants:UserGameDataType[],
-        participantIdentities:UserDataType[],
-        summonerData:{
-            championId:number,
-            spell1Id:number,
-            spell2Id:number,
-            stats:{
-                assists:number,
-                champLevel:number,
-                deaths:number,
-                item0:number,
-                item1:number,
-                item2:number,
-                item3:number,
-                item4:number,
-                item5:number,
-                item6:number,
-                kills:number,
-                win:boolean,
-                perk0:number,
-                perkSubStyle:number,
-            }
-        }
-    }
-}
+    const onClick = useCallback((e:MouseEvent<HTMLDivElement>) => {
+        dispatch(getAccount(e.currentTarget.textContent as string));
+    },[dispatch]);
 
-const GameItem:FC<GameDataType> = ({gameData}) => {
     useEffect(() => {
         console.log("GameItem 랜더링");
     },[]);
@@ -118,8 +92,6 @@ const GameItem:FC<GameDataType> = ({gameData}) => {
     return (
         <GameItemWrap isWin={win}>
             <GameStats>
-                {/* <GameType>솔랭</GameType> */}
-                <Bar/>
                 <GameResult isWin={win}>{win ? "승리" : "패배"}</GameResult>
             </GameStats>
             <GameSettingInfo>
@@ -144,13 +116,11 @@ const GameItem:FC<GameDataType> = ({gameData}) => {
             </KDAWrap>
             <Stats>
                 <div>{champLevel} 레벨</div>
-                {/* <div>221 (6.1) CS</div>
-                <div>킬관여 43%</div> */}
             </Stats>
             <Items>
                 {itemArray.map((id,index) => (
                     <Item 
-                        src={(id && `http://ddragon.leagueoflegends.com/cdn/10.14.1/img/item/${id}.png`) || "https://opgg-static.akamaized.net/images/pattern/opacity.1.png"} 
+                        src={(id && `http://ddragon.leagueoflegends.com/cdn/10.15.1/img/item/${id}.png`) || "https://opgg-static.akamaized.net/images/pattern/opacity.1.png"} 
                         key={index}
                     />
                 ))}
@@ -160,6 +130,7 @@ const GameItem:FC<GameDataType> = ({gameData}) => {
                     {
                         playerGameDataArray1.map((playerData,index) => (
                             <Summoner 
+                                onClick={onClick}
                                 nickname={playerDataArray1[index].player.summonerName} 
                                 championName={championJSON[playerData.championId].engName}
                                 key={playerData.championId} 
@@ -171,6 +142,7 @@ const GameItem:FC<GameDataType> = ({gameData}) => {
                     {
                         playerGameDataArray2.map((playerData,index) => (
                             <Summoner 
+                                onClick={onClick}
                                 nickname={playerDataArray2[index].player.summonerName} 
                                 championName = {championJSON[playerData.championId].engName}
                                 key={playerData.championId} 

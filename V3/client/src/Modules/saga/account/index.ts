@@ -1,13 +1,17 @@
-import { getAccountSaga, getAccount, GET_ACCOUNT, failAccount } from '../../action/account';
+import { GetAccountSagaType, GET_ACCOUNT, successAccount, failAccount } from '../../action/account';
+import { call, takeEvery, put } from 'redux-saga/effects';
 import { request } from '../../../lib/api';
-import { call, all, takeEvery, put } from 'redux-saga/effects';
+import { newGamedata } from '../../action/gamedata';
+import { getLeague } from '../../action/league';
 
-
-function* getAccountSaga(action:getAccountSaga){
+function* getAccountSaga(action:GetAccountSagaType){
     try {
-        const data = yield call(request,`summoner/${action.payload}`);
-        console.log(data);
+        const accountData = yield call(request, `summoner/${action.payload}`);
+        const { id, accountId } = accountData.data;    
         
+        yield put(successAccount(accountData.data));
+        yield put(getLeague(id));
+        yield put(newGamedata(accountId));
     } catch(err) {
         yield put(failAccount());
     }

@@ -63,7 +63,6 @@ export const ProfileWrap = styled.div`
 export const ProfileImgWrap = styled.img`
     width:100px;
     height:100px;
-    background-color:red;
 `;
 
 export const ProfileDataWrap = styled.div`
@@ -329,4 +328,17 @@ export const SummonerWrap = styled.div`
         white-space:nowrap;
         text-overflow:ellipsis;
     }
+`;
+
+export const MoreButton = styled.div`
+    height: 50px;
+    color: #555e5e;
+    font-size: 13px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #cdd2d2;
+    box-shadow: 0 1px #dcdfdf;
+    background: #f2f2f2;
+    border-radius: 2px;
 `;

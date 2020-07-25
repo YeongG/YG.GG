@@ -2,7 +2,9 @@ import React, {
     useState, 
     useCallback, 
     useEffect,
-    FC
+    FC,
+    FormEvent,
+    ChangeEvent
 } from 'react';
 import logo from './img/logo.png';
 import SearchFocusItem from './SearchFocusItem';
@@ -17,16 +19,28 @@ import {
     SearchFocusIntroduce,
     SearchFocusItemWrap
 } from './styled';
-const Index:FC = () => {
+import { RouteComponentProps } from 'react-router';
+const Index:FC<RouteComponentProps> = ({history}) => {
+
+    const [username, setUsername] = useState<string>("");
+
+    const onSubmit = useCallback((e:FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        history.push(`/search/${username}`);
+    },[username]); 
+
+    const onChange = useCallback((e:ChangeEvent<HTMLInputElement>) => {
+        setUsername(e.target.value);
+    },[]);
     return (
         <>
             <Global/>
-            <IndexWrap>
+            <IndexWrap>  
                 <LogoWrap>
                     <img alt="img" src={logo} />
                 </LogoWrap>
-                <SearchForm>
-                    <SearchInput placeholder="소환사명" />
+                <SearchForm onSubmit={onSubmit}>
+                    <SearchInput onChange={onChange} value={username} placeholder="소환사명" />
                     <SubmitButton>.GG</SubmitButton>
                     {/* { isFocus && (
                     <SearchFocusWrap>

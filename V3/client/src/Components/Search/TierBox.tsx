@@ -1,13 +1,14 @@
-import React, { useEffect, useMemo, useState, memo, FC } from 'react';
-import Bronze from './Emblem_Bronze.png';
-import Challenger from './Emblem_Challenger.png';
-import Diamond from './Emblem_Diamond.png';
-import Gold from './Emblem_Gold.png';
-import GrandMaster from './Emblem_Grandmaster.png';
-import Iron from './Emblem_Iron.png';
-import Master from './Emblem_Master.png';
-import Platinum from './Emblem_Platinum.png';
-import Silver from './Emblem_Silver.png';
+import React, { useEffect, useMemo, memo, FC } from 'react';
+import Bronze from './img/Emblem_Bronze.png';
+import Challenger from './img/Emblem_Challenger.png';
+import Diamond from './img/Emblem_Diamond.png';
+import Gold from './img/Emblem_Gold.png';
+import GrandMaster from './img/Emblem_Grandmaster.png';
+import Iron from './img/Emblem_Iron.png';
+import Master from './img/Emblem_Master.png';
+import Platinum from './img/Emblem_Platinum.png';
+import Silver from './img/Emblem_Silver.png';
+import { LeagueType } from '../../Modules/action/league';
 import { 
     TierBoxWrap,
     StyledImg,
@@ -34,15 +35,25 @@ const queueTypeToKorean = {
 };
 
 interface TierBoxType {
-    tierData:{
-        queueType:string,
-        rank:string,
-        tier:string,
-        wins:number,
-        losses:number,
-        leaguePoints:number,
-    }
+    tierData:LeagueType
 }
+
+type RankTypeStr = (
+    | "RANKED_FLEX_SR"
+    | "RANKED_SOLO_5x5"
+);
+
+type TierStr = (
+    | "Bronze"
+    | "Challenger"
+    | "Diamond"
+    | "Gold"
+    | "GrandMaster"
+    | "Iron"
+    | "Master"
+    | "Platinum"
+    | "Silver"
+);
 
 const TierBox:FC<TierBoxType> = ({tierData}) => {
     const {
@@ -53,26 +64,28 @@ const TierBox:FC<TierBoxType> = ({tierData}) => {
         losses,
         leaguePoints
     } = tierData;
+
+    useEffect(() => {
+        console.log("TierBox 랜더링");
+    })
     
-    const winRate = useMemo(() => ((wins/(wins+losses))*100).toFixed(2),[]);
+    const winRate:string = useMemo(() => ((wins/(wins+losses))*100).toFixed(2),[]);
+    const tierStr:TierStr = useMemo(() => (tier.toLowerCase().charAt(0).toUpperCase() + tier.toLowerCase().slice(1) as TierStr),[]);
 
     return (
         <TierBoxWrap>
             {
-                // leagueName ? (
-                //     <>
-                //         <StyledImgWrap>
-                //             <StyledImg src={tierImgSrcObj[tier.toLowerCase().charAt(0).toUpperCase() + tier.toLowerCase().slice(1)]} />
-                //         </StyledImgWrap>
-                //         <SummonerInfoWrap>
-                //             <div>{queueTypeToKorean[queueType]}랭크</div>
-                //             <div>{tier} {rank}</div>
-                //             <div><LeaguePorint>{leaguePoints} LP</LeaguePorint> {wins}승 {losses}패</div>
-                //             <div>승률 {winRate}%</div>
-                //             <div>{leagueName}</div>
-                //         </SummonerInfoWrap>
-                //     </>
-                // ) :  "Loading"
+                <>
+                    <StyledImgWrap>
+                        <StyledImg src={tierImgSrcObj[tierStr]} />
+                    </StyledImgWrap>
+                    <SummonerInfoWrap>
+                        <div>{queueTypeToKorean[queueType as RankTypeStr]}랭크</div>
+                        <div>{tier} {rank}</div>
+                        <div><LeaguePorint>{leaguePoints} LP</LeaguePorint> {wins}승 {losses}패</div>
+                        <div>승률 {winRate}%</div>
+                    </SummonerInfoWrap>
+                </>
             }
         </TierBoxWrap>
     );

@@ -1,29 +1,11 @@
-import { accountAction, GET_ACCOUNT, SUCCESS_ACCOUNT, FAIL_ACCOUNT } from "../../action/account";
+import { AccountActionType, AccountType, SUCCESS_ACCOUNT, FAIL_ACCOUNT } from '../../action/account';
 
-export interface accountStateType {
-    accountId:string,
-    id:string,
-    name:string,
-    profileIconId:number,
-    puuid:string,
-    revisionDate:string,
-    summonerLevel:number,
-}
+export type AccountStateType = AccountType | null;
 
-const initialState:accountStateType = {
-    accountId:"",
-    id:"",
-    name:"",
-    profileIconId:0,
-    puuid:"",
-    revisionDate:"",
-    summonerLevel:0
-}
-
-const accountReducers = (
-    state:accountStateType = initialState,
-    action:accountAction,
-):accountStateType => {
+const accountReducer = (
+    state:AccountStateType = null,  
+    action:AccountActionType
+):AccountStateType => {
     switch(action.type) {
         case SUCCESS_ACCOUNT: {
             return action.payload;
@@ -37,4 +19,4 @@ const accountReducers = (
     }
 }
 
-export default accountReducers;
+export default accountReducer;
